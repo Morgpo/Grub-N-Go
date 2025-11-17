@@ -34,14 +34,3 @@ http://localhost:8000
 
 The frontend expects the backend to be running locally with CORS enabled.
 
-📁 Folder Structure
--------------------
-Frontend/
-  ├── src/
-  │   ├── api/          # API calls to backend
-  │   ├── pages/        # React pages (restaurants, menu, cart, orders)
-  │   ├── components/   # Navbar, shared components
-  │   └── context/      # Cart context
-  ├── index.html
-  ├── package.json
-  └── vite.config.js
