@@ -1,14 +1,3 @@
--- =============================================================================
--- GrubnGo Database: Stored Procedures and Triggers
--- =============================================================================
--- This file contains one trigger procedure and one stored procedure with
--- comprehensive documentation explaining their purpose and functionality.
--- 
--- Author: Database Team
--- Date: November 2025
--- Version: 1.0
--- =============================================================================
-
 USE GrubnGo;
 
 -- Change delimiter to handle procedure definitions
