@@ -10,6 +10,11 @@ A FastAPI backend for the GrubnGo food ordering platform that interfaces with a 
 - MySQL Server running on localhost
 - Virtual environment (handled by setup script)
 
+### === README INSTRUCTIONS ===
+**Configure the database:**
+   - Copy `.env.example` to `.env`
+   - Update the database configuration in `.env`
+
 ### Installation
 
 1. **Set up the virtual environment and install dependencies:**
