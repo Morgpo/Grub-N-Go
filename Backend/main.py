@@ -7,7 +7,11 @@ from database import get_db_manager
 from config import settings
 
 # Import route modules
-from routes import account_routes, menu_routes, order_routes, utility_routes
+from routes import (
+    account_routes, menu_routes, order_routes, utility_routes,
+    address_routes, payment_method_routes, business_hours_routes,
+    modifier_routes, refund_routes
+)
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -58,6 +62,13 @@ app.include_router(account_routes.router, prefix="/api/v1", tags=["Accounts"])
 app.include_router(menu_routes.router, prefix="/api/v1", tags=["Menus"])
 app.include_router(order_routes.router, prefix="/api/v1", tags=["Orders"])
 app.include_router(utility_routes.router, prefix="/api/v1", tags=["Analytics"])
+
+# New route modules for extended functionality
+app.include_router(address_routes.router, prefix="/api/v1", tags=["Addresses"])
+app.include_router(payment_method_routes.router, prefix="/api/v1", tags=["Payment Methods"])
+app.include_router(business_hours_routes.router, prefix="/api/v1", tags=["Business Hours"])
+app.include_router(modifier_routes.router, prefix="/api/v1", tags=["Modifiers"])
+app.include_router(refund_routes.router, prefix="/api/v1", tags=["Refunds"])
 
 
 @app.get("/", response_model=dict)
