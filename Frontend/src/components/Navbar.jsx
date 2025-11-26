@@ -1,6 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export default function Navbar() {
+  const { logout, user } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
+
   return (
     <header
       style={{
@@ -24,6 +33,8 @@ export default function Navbar() {
             width: 120,
             display: "flex",
             justifyContent: "flex-start",
+            alignItems: "center",
+            gap: "1rem",
           }}
         >
           <Link
@@ -58,15 +69,32 @@ export default function Navbar() {
           </h1>
         </div>
 
-        {/* RIGHT: Orders / Cart (fixed width, right-aligned) */}
+        {/* RIGHT: Account / Orders / Cart / Logout (fixed width, right-aligned) */}
         <nav
           style={{
-            width: 160,
+            width: 320,
             display: "flex",
             justifyContent: "flex-end",
             gap: "0.75rem",
+            alignItems: "center",
           }}
         >
+          <Link
+            to="/account"
+            style={{
+              padding: "0.4rem 0.9rem",
+              borderRadius: 999,
+              border: "1px solid #fff",
+              background: "transparent",
+              color: "#fff",
+              textDecoration: "none",
+              fontSize: "0.9rem",
+              fontWeight: 500,
+            }}
+          >
+            Account
+          </Link>
+
           <Link
             to="/orders"
             style={{
@@ -98,6 +126,22 @@ export default function Navbar() {
           >
             Cart
           </Link>
+
+          <button
+            onClick={handleLogout}
+            style={{
+              padding: "0.4rem 0.9rem",
+              borderRadius: 999,
+              border: "1px solid #fff",
+              background: "transparent",
+              color: "#fff",
+              fontSize: "0.9rem",
+              fontWeight: 500,
+              cursor: "pointer",
+            }}
+          >
+            Logout
+          </button>
         </nav>
       </div>
     </header>

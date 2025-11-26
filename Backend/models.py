@@ -29,8 +29,8 @@ class OrderStatusEnum(str, Enum):
 
 class OperatingStatusEnum(str, Enum):
     OPEN = "OPEN"
-    CLOSED = "CLOSED"
     TEMPORARILY_CLOSED = "TEMPORARILY_CLOSED"
+    PERMANENTLY_CLOSED = "PERMANENTLY_CLOSED"
 
 
 class PaymentTypeEnum(str, Enum):
@@ -250,6 +250,23 @@ class OrderItemUpdate(BaseModel):
 
 # Response models
 class Account(BaseModel):
+    account_id: int
+    email: str
+    password_hash: str  # Internal use only, not returned in API responses
+    role: RoleEnum
+    status: AccountStatusEnum
+    failed_login_attempts: int = 0
+    last_login_attempt: Optional[datetime] = None
+    created_at: datetime
+    updated_at: datetime
+    created_by: Optional[int] = None
+
+    class Config:
+        from_attributes = True
+
+
+class AccountResponse(BaseModel):
+    """Account response model without password_hash for API responses."""
     account_id: int
     email: str
     role: RoleEnum
