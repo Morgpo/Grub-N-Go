@@ -2,15 +2,6 @@
 
 A FastAPI backend for the GrubnGo food ordering platform that interfaces with a MySQL database.
 
-## Features
-
-- **Account Management**: Create and manage customer and restaurant accounts
-- **Restaurant Management**: Manage restaurant profiles, menus, and menu items
-- **Order Management**: Create, update, and track orders and order items
-- **Analytics**: Get popular items, customer summaries, and revenue reports
-- **Database Integration**: Full MySQL integration with connection pooling
-- **API Documentation**: Automatic Swagger/OpenAPI documentation
-
 ## Setup
 
 ### Prerequisites
@@ -36,15 +27,6 @@ A FastAPI backend for the GrubnGo food ordering platform that interfaces with a 
    - Update the database configuration in `.env`
    ```bash
    cp .env.example .env
-   ```
-
-4. **Create the database schema:**
-   - Use the SQL files in `../sql_reference/` to create the database tables
-   - Run `create_tables.sql` to set up the schema
-
-5. **Start the API server:**
-   ```bash
-   python main.py
    ```
 
 The API will be available at `http://localhost:8000`

@@ -1,36 +1,37 @@
-# Grub-N-Go
+# DEV README
+## Schema Changes:
+### Add Account Status to Accounts table
+- Just kidding, this is already done
 
-Grub-N-Go Frontend
-=====================
+### Add Location
+- Just kidding, this is already done
 
-This is the React + Vite frontend for the Grub-N-Go food ordering application.
+### Add Contact
+- Just kidding, this is already done
 
-🚀 Requirements
----------------
-- Node.js (v18 or higher)
-- npm (comes with Node)
+### Add Payment
+- Just kidding, this is already done
 
-📦 Install Dependencies
------------------------
-cd Frontend
-npm install
+### Clean up SQL schema to remove duplicate/unused tables
+- Remove old tables that are no longer used. Saw addresses are doing something weird. 5-10 tables needed
 
-▶️ Run the Frontend (Development Mode)
---------------------------------------
-npm run dev
+### Miniumum 24 values per table
+- Need to make more demo data for everything
 
-The app will be available at:
-http://localhost:5173
+### New SQL DMP after changes
+- Need to export new SQL DMP after making changes
 
-🔗 Backend API
----------------
-Make sure the backend FastAPI server is running:
 
-cd Backend
-python main.py
+## Backend Changes:
+### Maybe none?
+- See about if there are any new requirements, but I think everything is already done
 
-Backend runs at:
-http://localhost:8000
 
-The frontend expects the backend to be running locally with CORS enabled.
-
+## Frontend Changes:
+### Payment Page
+- See `payment_method_crud.py` for this
+### Login/Register Page
+- See `account_crud.py` for this
+### Account Page (Optional)
+- Just show all the info for the account, including contact methods from `customer` or `restaurant` table
+- See `account_crud.py` for this
