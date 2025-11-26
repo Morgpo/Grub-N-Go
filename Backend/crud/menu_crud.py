@@ -1,5 +1,6 @@
 from typing import List, Optional
 from decimal import Decimal
+from datetime import time, timedelta
 from database import get_db_manager
 from models import (
     Menu, MenuCreate, MenuUpdate,
@@ -8,6 +9,32 @@ from models import (
     Modifier, ModifierCreate, ModifierUpdate,
     ModifierOption, ModifierOptionCreate, ModifierOptionUpdate
 )
+
+
+def timedelta_to_time(td) -> Optional[time]:
+    """Convert timedelta to time object. Returns None if input is None."""
+    if td is None:
+        return None
+    if isinstance(td, time):
+        return td
+    if isinstance(td, timedelta):
+        total_seconds = int(td.total_seconds())
+        hours = total_seconds // 3600
+        minutes = (total_seconds % 3600) // 60
+        seconds = total_seconds % 60
+        return time(hours, minutes, seconds)
+    return None
+
+
+def convert_menu_item_row(row: dict) -> dict:
+    """Convert a menu item row from database, handling timedelta to time conversion."""
+    if row:
+        row = row.copy()
+        if 'available_from' in row:
+            row['available_from'] = timedelta_to_time(row['available_from'])
+        if 'available_until' in row:
+            row['available_until'] = timedelta_to_time(row['available_until'])
+    return row
 
 
 class MenuCRUD:
@@ -97,19 +124,19 @@ class MenuItemCRUD:
         WHERE mi.menu_item_id = %s
         """
         result = self.db.execute_query(query, (menu_item_id,), fetch_one=True)
-        return MenuItem(**result) if result else None
+        return MenuItem(**convert_menu_item_row(result)) if result else None
     
     def get_menu_items_by_menu(self, menu_id: int) -> List[MenuItem]:
         """Get all menu items for a menu."""
         query = "SELECT * FROM MenuItem WHERE menu_id = %s ORDER BY name"
         results = self.db.execute_query(query, (menu_id,))
-        return [MenuItem(**row) for row in results] if results else []
+        return [MenuItem(**convert_menu_item_row(row)) for row in results] if results else []
     
     def get_available_menu_items_by_menu(self, menu_id: int) -> List[MenuItem]:
         """Get available menu items for a menu."""
         query = "SELECT * FROM MenuItem WHERE menu_id = %s AND is_available = 1 ORDER BY name"
         results = self.db.execute_query(query, (menu_id,))
-        return [MenuItem(**row) for row in results] if results else []
+        return [MenuItem(**convert_menu_item_row(row)) for row in results] if results else []
     
     def get_available_menu_items_with_time_check(self, menu_id: int) -> List[MenuItem]:
         """Get available menu items considering time restrictions (BR-017)."""
@@ -120,7 +147,7 @@ class MenuItemCRUD:
                      AND (available_until IS NULL OR CURTIME() <= available_until)
                    ORDER BY name"""
         results = self.db.execute_query(query, (menu_id,))
-        return [MenuItem(**row) for row in results] if results else []
+        return [MenuItem(**convert_menu_item_row(row)) for row in results] if results else []
     
     def get_menu_items_by_restaurant(self, restaurant_id: int) -> List[MenuItem]:
         """Get all menu items for a restaurant."""
@@ -132,7 +159,7 @@ class MenuItemCRUD:
         ORDER BY m.name, mi.name
         """
         results = self.db.execute_query(query, (restaurant_id,))
-        return [MenuItem(**row) for row in results] if results else []
+        return [MenuItem(**convert_menu_item_row(row)) for row in results] if results else []
     
     def search_menu_items_by_name(self, search_term: str) -> List[MenuItem]:
         """Search menu items by name."""
@@ -145,7 +172,7 @@ class MenuItemCRUD:
         """
         search_pattern = f"%{search_term}%"
         results = self.db.execute_query(query, (search_pattern,))
-        return [MenuItem(**row) for row in results] if results else []
+        return [MenuItem(**convert_menu_item_row(row)) for row in results] if results else []
     
     def get_menu_item_with_modifiers(self, menu_item_id: int) -> Optional[dict]:
         """Get menu item with all modifiers and options."""
