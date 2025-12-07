@@ -1,3 +1,21 @@
+/**
+ * AuthContext - Authentication State Management
+ * 
+ * DESIGN DECISION: This context is intentionally unchanged for customer-only frontend.
+ * 
+ * The AuthContext continues to support role-based authentication state (userId, userRole, userEmail)
+ * even though the active frontend only supports customer accounts. This design maintains future
+ * extensibility, allowing restaurant functionality to be easily restored by uncommenting the
+ * relevant UI components without requiring changes to the authentication layer.
+ * 
+ * Key features preserved:
+ * - Role-based state management (userRole stored in localStorage)
+ * - Generic user object structure that works for any role
+ * - Logout functionality that clears all authentication data
+ * - Authentication status checking
+ * 
+ * Requirements: 4.4 - Backend and database remain unchanged, authentication layer supports all roles
+ */
 import { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext(null);

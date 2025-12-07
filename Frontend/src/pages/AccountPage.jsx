@@ -3,10 +3,10 @@ import { useAuth } from "../context/AuthContext";
 import {
   fetchAccountById,
   fetchCustomerById,
-  fetchRestaurantById,
+  // fetchRestaurantById, // RESTAURANT FUNCTIONALITY - COMMENTED OUT FOR FUTURE USE
   updateAccount,
   updateCustomer,
-  updateRestaurant,
+  // updateRestaurant, // RESTAURANT FUNCTIONALITY - COMMENTED OUT FOR FUTURE USE
 } from "../api/grubngo";
 
 export default function AccountPage() {
@@ -26,6 +26,7 @@ export default function AccountPage() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
 
+  /* RESTAURANT FUNCTIONALITY - COMMENTED OUT FOR FUTURE USE
   // Restaurant-specific fields
   const [contactEmail, setContactEmail] = useState("");
   const [operatingStatus, setOperatingStatus] = useState("OPEN");
@@ -33,6 +34,7 @@ export default function AccountPage() {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [postalCode, setPostalCode] = useState("");
+  */
 
   useEffect(() => {
     loadAccountData();
@@ -56,7 +58,9 @@ export default function AccountPage() {
         setProfileData(customer);
         setName(customer.customer_name);
         setPhone(customer.phone || "");
-      } else if (user.role === "RESTAURANT") {
+      }
+      /* RESTAURANT FUNCTIONALITY - COMMENTED OUT FOR FUTURE USE
+      else if (user.role === "RESTAURANT") {
         const restaurant = await fetchRestaurantById(user.id);
         setProfileData(restaurant);
         setName(restaurant.restaurant_name);
@@ -68,6 +72,7 @@ export default function AccountPage() {
         setState(restaurant.state || "");
         setPostalCode(restaurant.postal_code || "");
       }
+      */
     } catch (err) {
       setError(err.message || "Failed to load account data");
     } finally {
@@ -95,7 +100,9 @@ export default function AccountPage() {
         if (Object.keys(updates).length > 0) {
           await updateCustomer(user.id, updates);
         }
-      } else if (user.role === "RESTAURANT") {
+      }
+      /* RESTAURANT FUNCTIONALITY - COMMENTED OUT FOR FUTURE USE
+      else if (user.role === "RESTAURANT") {
         const updates = {};
         if (name !== profileData.restaurant_name)
           updates.restaurant_name = name;
@@ -115,6 +122,7 @@ export default function AccountPage() {
           await updateRestaurant(user.id, updates);
         }
       }
+      */
 
       setSuccess("Account updated successfully!");
       setEditing(false);
@@ -136,7 +144,9 @@ export default function AccountPage() {
       if (user.role === "CUSTOMER") {
         setName(profileData.customer_name);
         setPhone(profileData.phone || "");
-      } else if (user.role === "RESTAURANT") {
+      }
+      /* RESTAURANT FUNCTIONALITY - COMMENTED OUT FOR FUTURE USE
+      else if (user.role === "RESTAURANT") {
         setName(profileData.restaurant_name);
         setPhone(profileData.contact_phone);
         setContactEmail(profileData.contact_email || "");
@@ -146,6 +156,7 @@ export default function AccountPage() {
         setState(profileData.state || "");
         setPostalCode(profileData.postal_code || "");
       }
+      */
     }
   };
 
@@ -366,7 +377,7 @@ export default function AccountPage() {
                 color: "#555",
               }}
             >
-              {user.role === "CUSTOMER" ? "Full Name" : "Restaurant Name"}
+              Full Name
             </label>
             <input
               type="text"
@@ -413,7 +424,7 @@ export default function AccountPage() {
             />
           </div>
 
-          {/* Restaurant-specific fields */}
+          {/* RESTAURANT FUNCTIONALITY - COMMENTED OUT FOR FUTURE USE
           {user.role === "RESTAURANT" && (
             <>
               <div style={{ marginBottom: "1.5rem" }}>
@@ -604,6 +615,7 @@ export default function AccountPage() {
               </div>
             </>
           )}
+          */}
         </div>
 
         {/* Action buttons when editing */}

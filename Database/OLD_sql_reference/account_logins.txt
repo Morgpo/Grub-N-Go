@@ -1,0 +1,63 @@
+ADMIN LOGIN:
+EMAIL: grub@go.com
+PASSWORD: admin123
+
+
+Customer Accounts (password: CustomerPass123!)
+customer01@example.com
+customer02@example.com
+customer03@example.com
+customer04@example.com
+customer05@example.com
+customer06@example.com
+customer07@example.com
+customer08@example.com
+customer09@example.com
+customer10@example.com
+customer11@example.com
+customer12@example.com
+customer13@example.com
+customer14@example.com
+customer15@example.com
+customer16@example.com
+customer17@example.com
+customer18@example.com
+customer19@example.com
+customer20@example.com
+customer21@example.com
+customer22@example.com
+customer23@example.com
+customer24@example.com
+customer25@example.com
+customer26@example.com
+customer27@example.com
+customer28@example.com
+customer29@example.com
+customer30@example.com
+
+Restaurant Accounts (password: RestaurantPass123!)
+restaurant01@grubngo.com
+restaurant02@grubngo.com
+restaurant03@grubngo.com
+restaurant04@grubngo.com
+restaurant05@grubngo.com
+restaurant06@grubngo.com
+restaurant07@grubngo.com
+restaurant08@grubngo.com
+restaurant09@grubngo.com
+restaurant10@grubngo.com
+restaurant11@grubngo.com
+restaurant12@grubngo.com
+restaurant13@grubngo.com
+restaurant14@grubngo.com
+restaurant15@grubngo.com
+restaurant16@grubngo.com
+restaurant17@grubngo.com
+restaurant18@grubngo.com
+restaurant19@grubngo.com
+restaurant20@grubngo.com
+restaurant21@grubngo.com
+restaurant22@grubngo.com
+restaurant23@grubngo.com
+restaurant24@grubngo.com
+restaurant25@grubngo.com

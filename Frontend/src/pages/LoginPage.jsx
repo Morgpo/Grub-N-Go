@@ -10,6 +10,8 @@ export default function LoginPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  
+  /* RESTAURANT FUNCTIONALITY - COMMENTED OUT FOR FUTURE USE
   const [role, setRole] = useState("CUSTOMER");
   
   // Restaurant-specific fields
@@ -17,6 +19,7 @@ export default function LoginPage() {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [postalCode, setPostalCode] = useState("");
+  */
   
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -65,6 +68,7 @@ export default function LoginPage() {
           return;
         }
 
+        /* RESTAURANT FUNCTIONALITY - COMMENTED OUT FOR FUTURE USE
         // Validate restaurant-specific fields
         if (role === "RESTAURANT") {
           if (!streetAddress || !city || !state || !postalCode) {
@@ -73,27 +77,30 @@ export default function LoginPage() {
             return;
           }
         }
+        */
 
         const response = await register({
           email,
           password,
-          role,
+          role: "CUSTOMER",
           name,
           phone,
+          /* RESTAURANT FUNCTIONALITY - COMMENTED OUT FOR FUTURE USE
           streetAddress: role === "RESTAURANT" ? streetAddress : undefined,
           city: role === "RESTAURANT" ? city : undefined,
           state: role === "RESTAURANT" ? state : undefined,
           postalCode: role === "RESTAURANT" ? postalCode : undefined,
+          */
         });
         
         localStorage.setItem("userId", response.account_id);
-        localStorage.setItem("userRole", role);
+        localStorage.setItem("userRole", "CUSTOMER");
         localStorage.setItem("userEmail", email);
         
         // Update auth context
         setUser({
           id: response.account_id,
-          role: role,
+          role: "CUSTOMER",
           email: email,
         });
         
@@ -161,7 +168,8 @@ export default function LoginPage() {
         )}
 
         <form onSubmit={handleSubmit}>
-          {/* Account Type Slider - Only show during registration */}
+          {/* RESTAURANT FUNCTIONALITY - COMMENTED OUT FOR FUTURE USE
+          Account Type Slider - Only show during registration
           {!isLogin && (
             <div style={{ marginBottom: "2rem" }}>
               <label
@@ -226,6 +234,7 @@ export default function LoginPage() {
               </div>
             </div>
           )}
+          */}
 
           <div style={{ marginBottom: "1.5rem" }}>
             <label
@@ -270,7 +279,7 @@ export default function LoginPage() {
                     color: "#333",
                   }}
                 >
-                  {role === "CUSTOMER" ? "Full Name" : "Restaurant Name"}
+                  Full Name
                 </label>
                 <input
                   type="text"
@@ -322,7 +331,8 @@ export default function LoginPage() {
                 />
               </div>
 
-              {/* Restaurant-specific address fields */}
+              {/* RESTAURANT FUNCTIONALITY - COMMENTED OUT FOR FUTURE USE
+              Restaurant-specific address fields
               {role === "RESTAURANT" && (
                 <>
                   <div style={{ marginBottom: "1.5rem" }}>
@@ -450,6 +460,7 @@ export default function LoginPage() {
                   </div>
                 </>
               )}
+              */}
             </>
           )}
 
