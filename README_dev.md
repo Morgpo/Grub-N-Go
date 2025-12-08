@@ -21,16 +21,13 @@
 
 ## Backend Changes:
 ### Maybe none?
-- See about if there are any new requirements, but I think everything is already done
+- None
 
 
 ## Frontend Changes:
 ### Payment Page
-- See `payment_method_crud.py` for this
+- Done
 ### Login/Register Page
-- See `account_crud.py` for this
-        - Done
+- Done
 ### Account Page (Optional)
-- Just show all the info for the account, including contact methods from `customer` or `restaurant` table
-- See `account_crud.py` for this
-        - Done
+- Done
