@@ -1,37 +1,64 @@
-# DEV README
-## Schema Changes:
-### Add Account Status to Accounts table
-- Just kidding, this is already done
+# Grub-N-Go
+This is a setup guide for the Grub-N-Go application.
 
-### Add Location
-- Just kidding, this is already done
+## Database
 
-### Add Contact
-- Just kidding, this is already done
+🚀 Requirements
+---------------
+- MySQL Server (v8.0 or higher)
+- MySQL Workbench
 
-### Add Payment
-- Just kidding, this is already done
+📦 Connect to the Backend
+-----------------------
+- See the `README.md` file in the `Backend` folder for instructions on configuring the database connection (.env).
 
-### Clean up SQL schema to remove duplicate/unused tables
-- Remove old tables that are no longer used. Saw addresses are doing something weird. 5-10 tables needed
-
-### Miniumum 24 values per table
-- Need to make more demo data for everything
-
-### New SQL DMP after changes
-- Need to export new SQL DMP after making changes
+▶️ Run the Database
+--------------------------------------
+Import the `grubngo_backup.sql` file located in the `Database` folder into your MySQL server using MySQL Workbench or any MySQL client.
 
 
-## Backend Changes:
-### Maybe none?
-- See about if there are any new requirements, but I think everything is already done
+## Backend
+
+🚀 Requirements
+---------------
+- Python (v3.8 or higher)
+
+📦 Install Dependencies
+-----------------------
+`cd Backend`
+`python ./setup/setup_venv.py`
+`python ./.venv/Scripts/activate` (Windows) or `source ./.venv/bin/activate` (Mac/Linux)
+
+▶️ Run the Backend
+--------------------------------------
+`python main.py`
+
+The app will be available at:
+http://localhost:8000
 
 
-## Frontend Changes:
-### Payment Page
-- See `payment_method_crud.py` for this
-### Login/Register Page
-- See `account_crud.py` for this
-### Account Page (Optional)
-- Just show all the info for the account, including contact methods from `customer` or `restaurant` table
-- See `account_crud.py` for this
+## Frontend
+
+🚀 Requirements
+---------------
+- Node.js (v18 or higher)
+- npm (comes with Node)
+
+📦 Install Dependencies
+-----------------------
+`cd Frontend`
+`npm install`
+
+▶️ Run the Frontend
+--------------------------------------
+`npm run dev`
+
+The app will be available at:
+http://localhost:5173
+
+
+## Credentials
+--------------------------------------
+Use the following credentials to log in as an customer admin:
+- Email: grub@go.com
+- Password: admin123

@@ -111,7 +111,15 @@ async def delete_order(order_id: int):
 async def create_order_item(order_item_data: OrderItemCreate):
     """Create a new order item."""
     try:
-        order_item_id = order_item_crud.create_order_item(order_item_data)
+        order_item_id = order_item_crud.create_order_item(
+            order_id=order_item_data.order_id,
+            menu_item_id=order_item_data.menu_item_id,
+            quantity=order_item_data.quantity,
+            unit_price=float(order_item_data.unit_price),
+            item_name=order_item_data.item_name,
+            item_description=order_item_data.item_description,
+            notes=order_item_data.notes
+        )
         return {"order_item_id": order_item_id, "message": "Order item created successfully"}
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))

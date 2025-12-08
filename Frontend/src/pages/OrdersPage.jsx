@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { fetchCustomerOrders } from "../api/grubngo";
 
 const CURRENT_CUSTOMER_ID = 2;
@@ -74,6 +75,24 @@ export default function OrdersPage() {
             {o.created_at && (
               <div style={{ fontSize: 12, color: "#555" }}>
                 Placed at: {new Date(o.created_at).toLocaleString()}
+              </div>
+            )}
+            {!o.is_paid && (
+              <div style={{ marginTop: 8 }}>
+                <Link
+                  to={`/payment/${o.order_id}`}
+                  style={{
+                    padding: "0.3rem 0.9rem",
+                    borderRadius: 999,
+                    border: "1px solid #111",
+                    background: "#111",
+                    color: "#fff",
+                    textDecoration: "none",
+                    fontSize: 14,
+                  }}
+                >
+                  Pay Now
+                </Link>
               </div>
             )}
           </li>

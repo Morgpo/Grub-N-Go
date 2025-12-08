@@ -43,6 +43,8 @@ export default function CartPage() {
         await createOrderItem({
           orderId,
           menuItemId: cartItem.menuItem.menu_item_id,
+          itemName: cartItem.menuItem.name,
+          itemDescription: cartItem.menuItem.description,
           quantity: cartItem.quantity,
           unitPrice: Number(cartItem.menuItem.price).toFixed(2),
         });

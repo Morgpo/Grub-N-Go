@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, status
 from typing import List
 from models import (
-    Account, AccountCreate, AccountUpdate,
+    Account, AccountResponse, AccountCreate, AccountUpdate,
     Customer, CustomerCreate, CustomerUpdate,
     Restaurant, RestaurantCreate, RestaurantUpdate,
     PaginationParams
@@ -27,7 +27,7 @@ async def create_account(account_data: AccountCreate):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
 
 
-@router.get("/accounts/{account_id}", response_model=Account)
+@router.get("/accounts/{account_id}", response_model=AccountResponse)
 async def get_account(account_id: int):
     """Get account by ID."""
     account = account_crud.get_account_by_id(account_id)
@@ -36,7 +36,7 @@ async def get_account(account_id: int):
     return account
 
 
-@router.get("/accounts/email/{email}", response_model=Account)
+@router.get("/accounts/email/{email}", response_model=AccountResponse)
 async def get_account_by_email(email: str):
     """Get account by email."""
     account = account_crud.get_account_by_email(email)
@@ -45,13 +45,13 @@ async def get_account_by_email(email: str):
     return account
 
 
-@router.get("/accounts/role/{role}", response_model=List[Account])
+@router.get("/accounts/role/{role}", response_model=List[AccountResponse])
 async def get_accounts_by_role(role: str):
     """Get all accounts by role."""
     return account_crud.get_accounts_by_role(role)
 
 
-@router.get("/accounts/", response_model=List[Account])
+@router.get("/accounts/", response_model=List[AccountResponse])
 async def get_accounts_paginated(limit: int = 20, offset: int = 0):
     """Get all accounts with pagination."""
     pagination = PaginationParams(limit=limit, offset=offset)

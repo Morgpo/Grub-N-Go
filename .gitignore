@@ -2,3 +2,16 @@
 **/__pycache__/
 
 **/.env
+
+**/.vscode/
+**/.idea/
+**/.kiro/
+
+**/node_modules/
+**/dist/
+**/build/
+**/coverage/
+**/coverage-report/
+**/coverage-final.json
+**/coverage-final.json
+**/coverage-final.json
