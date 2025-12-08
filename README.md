@@ -1,7 +1,7 @@
 # Grub-N-Go
 This is a setup guide for the Grub-N-Go application.
 
-## Database
+# Database
 
 🚀 Requirements
 ---------------
@@ -17,7 +17,7 @@ This is a setup guide for the Grub-N-Go application.
 Import the `grubngo_backup.sql` file located in the `Database` folder into your MySQL server using MySQL Workbench or any MySQL client.
 
 
-## Backend
+# Backend
 
 🚀 Requirements
 ---------------
@@ -37,7 +37,7 @@ The app will be available at:
 http://localhost:8000
 
 
-## Frontend
+# Frontend
 
 🚀 Requirements
 ---------------
@@ -57,8 +57,7 @@ The app will be available at:
 http://localhost:5173
 
 
-## Credentials
---------------------------------------
+# Credentials
 Use the following credentials to log in as an customer admin:
 - Email: grub@go.com
 - Password: admin123
