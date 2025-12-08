@@ -8,6 +8,7 @@ import AccountPage from "./pages/AccountPage";
 import { CartProvider } from "./context/CartContext";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import Navbar from "./components/Navbar";
+import PaymentPage from "./pages/PaymentPage";
 
 // Protected Route Component
 function ProtectedRoute({ children }) {
@@ -39,7 +40,7 @@ function AppContent() {
       <div style={{ fontFamily: "system-ui", minHeight: "100vh" }}>
         {/* Header - only show when authenticated */}
         {isAuthenticated && <Navbar />}
-        
+
         {/* Main content */}
         <main
           style={{
@@ -83,6 +84,14 @@ function AppContent() {
                 element={
                   <ProtectedRoute>
                     <OrdersPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/payment/:orderId"
+                element={
+                  <ProtectedRoute>
+                    <PaymentPage />
                   </ProtectedRoute>
                 }
               />

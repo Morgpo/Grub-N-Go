@@ -104,3 +104,33 @@ export function createOrderItem({
     notes: notes || null,
   });
 }
+
+// PAYMENT METHODS
+export function fetchPaymentMethods(customerId) {
+  // GET /api/v1/customers/{customer_id}/payment-methods
+  return get(`/customers/${customerId}/payment-methods`);
+}
+
+export function createPaymentMethod(customerId, data) {
+  // POST /api/v1/customers/{customer_id}/payment-methods
+  return post(`/customers/${customerId}/payment-methods`, {
+    ...data,
+    customer_id: customerId,
+  });
+}
+
+// ORDERS (single + update + status)
+export function fetchOrder(orderId) {
+  // GET /api/v1/orders/{order_id}
+  return get(`/orders/${orderId}`);
+}
+
+export function updateOrder(orderId, partial) {
+  // PUT /api/v1/orders/{order_id}
+  return put(`/orders/${orderId}`, partial);
+}
+
+export function updateOrderStatus(orderId, status) {
+  // PUT /api/v1/orders/{order_id}/status?status=CONFIRMED
+  return put(`/orders/${orderId}/status?status=${status}`, {});
+}
