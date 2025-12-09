@@ -27,7 +27,7 @@ Import the `grubngo_backup.sql` file located in the `Database` folder into your 
 -----------------------
 `cd Backend`
 `python ./setup/setup_venv.py`
-`python ./.venv/Scripts/activate` (Windows) or `source ./.venv/bin/activate` (Mac/Linux)
+`./.venv/Scripts/activate` (Windows) or `source ./.venv/bin/activate` (Mac/Linux)
 
 ▶️ Run the Backend
 --------------------------------------
